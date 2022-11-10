@@ -1,0 +1,21 @@
+/* Tyler.css
+ * Copyright (c) 2022
+ */
+
+body.single_slide div ul li img {
+	vertical-align: middle;
+	height: 1.5em;
+	width: 1.5em;
+}
+
+body.single_slide div ul li img[alt="free_bsd"] {
+	vertical-align: middle;
+	height: 1.5em;
+	width: 3em;
+}
+
+body.single_slide div ul li img[alt="apache_software_foundation"] {
+	vertical-align: middle;
+	height: 1.5em;
+	width: 3em;
+}

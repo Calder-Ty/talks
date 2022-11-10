@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Tyler Calder" />
+  <title>Intro to Concurrency: Async and Multiprocessingpagetitle=Intro to Concurrency</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <!-- Add devicons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <link rel="stylesheet" href="./stylings.css">
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Introduction to Concurrency</h1>
+  <p class="author">
+Tyler Calder
+  </p>
+  <p class="date">2022-11-10</p>
+</div>
+<div id="about-me" class="slide section level2">
+<h1>About Me</h1>
+<ul>
+<li>Husband, Father of 4 daughters</li>
+<li>Data Engineer and Data Engineering Team Lead at AdvancedMD</li>
+<li>Work in backend, tooling and database optimizations</li>
+<li>Maintainer of Python RealReq project</li>
+</ul>
+</div>
+<div id="objectives" class="slide section level2">
+<h1>Objectives</h1>
+<ol style="list-style-type: decimal">
+<li>Describe Concurrency</li>
+<li>Understand basic Concurrency Paradigms</li>
+<li>Understand when to use different concurrency paradigms</li>
+<li>See some examples of concurrent code</li>
+<li>Understand some traps and common pitfalls</li>
+</ol>
+<p>Non Objectives:</p>
+<ol style="list-style-type: decimal">
+<li>Profiling</li>
+<li>Multi-threading</li>
+</ol>
+</div>
+<div id="what-is-concurrency" class="slide section level2">
+<h1>What is Concurrency?</h1>
+<ul>
+<li>The ability to execute code fast?</li>
+<li>The ability to alter physics and do two things at once?</li>
+<li>Monies being laundered by felons?</li>
+</ul>
+</div>
+<div id="definitions" class="slide section level2">
+<h1>Definitions:</h1>
+<ul>
+<li><p><strong>Concurrency</strong>: Whenever two things are occurring or happening at the same time (for varying meanings of “same time”); When you have code that is not run sequentially.</p>
+<ul>
+<li><p><strong>Parallelism</strong>: When you are able to execute code <em>in parallel</em>, i.e at the same time.</p></li>
+<li><p><strong>Asynchronous</strong>: When code is executed out of order (not synchronously).</p></li>
+</ul></li>
+<li><p><strong>Synchronous</strong>: Code that is executed in order.</p></li>
+</ul>
+</div>
+<div id="why-use-concurrency" class="title-slide slide section level1"><h1>Why use Concurrency?</h1></div><div id="why-concurrency" class="slide section level2">
+<h1>Why Concurrency?</h1>
+<ul>
+<li>Physical Limitations of Processors.</li>
+<li>Make use of available hardware.</li>
+<li>Because programming became too easy.</li>
+</ul>
+</div>
+<div id="concurrency-paradigms" class="title-slide slide section level1"><h1>Concurrency Paradigms:</h1></div><div id="multiprocessing" class="slide section level2">
+<h1>Multiprocessing</h1>
+<ul>
+<li>Multiple Processes that work on specific parts of code</li>
+<li>Works well in situations where you just need more computational power</li>
+<li><p>“Throw more resources at the problem”</p></li>
+<li><p>Example: Performing intensive mathematical calculations; Machine Learning</p></li>
+</ul>
+</div><div id="asynchronous-programming" class="slide section level2">
+<h1>Asynchronous Programming</h1>
+<ul>
+<li>Programming code that does not have to, or even expects to, execute synchronously</li>
+<li>Ideal in situations where computational power is being wasted waiting</li>
+<li>“Use available resources to full capacity”</li>
+</ul>
+<p>Example: Making hundreds or thousands of requests from an API, or reads from a Database</p>
+</div>
+<div id="real-world-concurrency" class="title-slide slide section level1"><h1>Real World Concurrency:</h1></div><div id="single-process-synchronous" class="slide section level2">
+<h1>Single Process, Synchronous</h1>
+<p>Ordering a Sandwich at Subway (Gas Station):</p>
+<ul>
+<li>One worker</li>
+<li>First Customer in gets served first</li>
+<li>Next customer gets served only after the first one has completed transaction.</li>
+<li>Food must be built step by step: bread, meat, vegetables, condiments, wrap, ring-up</li>
+<li>Long tasks block the work (Ringing up, Toasting)</li>
+</ul>
+</div><div id="single-process-asynchronous" class="slide section level2">
+<h1>Single Process, Asynchronous</h1>
+<p>Ordering a Sandwich at Subway (Gas Station):</p>
+<ul>
+<li>One worker, slightly more competent</li>
+<li>First Customer in gets served first</li>
+<li>Food must be built step by step: bread, meat, vegetables, condiments, wrap, ring-up</li>
+<li>Next customer may begin being served while first customer is waiting for long tasks to complete (toasting)</li>
+</ul>
+</div><div id="multi-process-synchronous" class="slide section level2">
+<h1>Multi-Process, Synchronous</h1>
+<p>Much like ordering at subway, but now imagine we have added a few workers to the mix.</p>
+<ul>
+<li>We can now start thinking about how to assign tasks to each worker.</li>
+<li>Each worker could take one whole customer through the entire process</li>
+<li>Each worker could take one part of the job and do that part (meat, vegetables, ring-up)</li>
+<li>Long tasks still block.</li>
+</ul>
+</div><div id="multi-process-asynchronous" class="slide section level2">
+<h1>Multi-Process, Asynchronous</h1>
+<p>Wendy’s maps to this kind of structure.</p>
+<ul>
+<li>Orders come in synchronously through the queue,</li>
+<li>They are processed asynchronously by all the workers in the back</li>
+<li>Orders that came in first don’t necessarily get done first.</li>
+<li>Can get very confusing very fast, often requiring a manager to oversee</li>
+</ul>
+</div>
+<div id="practical-example-of-asynchronous-programming" class="title-slide slide section level1"><h1>Practical Example of Asynchronous Programming</h1></div>
+<div id="proscons-of-async" class="title-slide slide section level1"><h1>Pros/Cons of Async</h1></div><div id="pros" class="slide section level2">
+<h1>Pros:</h1>
+<ul>
+<li>Scalable: Can have thousands of concurrent tasks with little problem</li>
+<li>Easy to understand: Writing with <code>async/await</code> makes async code feel like synchronous code. (<em>Caveat</em>)</li>
+</ul>
+</div><div id="cons" class="slide section level2">
+<h1>Cons:</h1>
+<ul>
+<li>All or nothing. Async functions can only be called from Async Functions</li>
+<li>Not very beneficial for tasks that don’t have idle time.</li>
+<li>Can be confusing if language does not have syntactical Sugar like <code>async/await</code></li>
+</ul>
+</div>
+<div id="practical-example-of-multiprocessing" class="title-slide slide section level1"><h1>Practical Example of Multiprocessing</h1></div>
+<div id="proscons-of-multiprocessing" class="title-slide slide section level1"><h1>Pros/Cons of Multiprocessing</h1></div><div id="pros-1" class="slide section level2">
+<h1>Pros:</h1>
+<ul>
+<li>Ability to do computationally intensive tasks faster</li>
+<li>Can be abstracted: Rest of your code doesn’t have to know that multiprocessing is happening</li>
+</ul>
+</div><div id="cons-1" class="slide section level2">
+<h1>Cons:</h1>
+<ul>
+<li>Can be expensive on resources: spawning new processes takes time and memory</li>
+<li>Not easily scaled: Scaling is limited by the number of processors available for your machine. (For example, the largest AWS compute resource has 192 vCPU’s).</li>
+</ul>
+</div>
+<div id="common-concerns-and-pitfalls" class="title-slide slide section level1"><h1>Common Concerns and Pitfalls:</h1></div><div id="common-challenges-and-misconceptions" class="slide section level2">
+<h1>Common Challenges and Misconceptions</h1>
+<h3 id="challenges">Challenges</h3>
+<ul>
+<li>Race Conditions</li>
+<li>Deadlocking</li>
+<li>Starvation</li>
+</ul>
+<p><em>Clean Code</em> By Bob Martin outlines more challenges and ways to think about them.</p>
+<h3 id="misconceptions">Misconceptions</h3>
+<ul>
+<li>Concurrency is always faster than synchronous code.</li>
+<li>If I let my server/other program handle it, I don’t need to understand it.</li>
+</ul>
+</div><div id="should-i-just-give-up-hope" class="slide section level2">
+<h1>Should I just give up hope?</h1>
+<ul>
+<li>Concurrency is just a tool to solve a problem.</li>
+<li>Not all code needs it, just as not all code needs a database.</li>
+</ul>
+</div><div id="addendum" class="slide section level2">
+<h1>Addendum</h1>
+<ul>
+<li>No mention of Multi-threading.</li>
+<li><code>Goroutines</code></li>
+</ul>
+</div><div id="contacts" class="slide section level2">
+<h1>Contacts</h1>
+<ul>
+<li>🌐<a href="https://www.calder-ty.com">https://www.Calder-ty.com</a></li>
+<li><i class="devicon-github-original"></i> <a href="https://github.com/Calder-Ty">https://github.com/Calder-Ty</a></li>
+<li>📧 calder-ty at protonmail dot com</li>
+<li>Twitch: <a href="https://twitch.tv/calder_ty">calder_ty</a></li>
+<li>Linkedin: Tyler Calder</li>
+</ul>
+</div><div id="references" class="slide section level2">
+<h1>References</h1>
+<ul>
+<li><em>Clean Code</em>, Bob Martin</li>
+<li><em>Python Documentation</em></li>
+</ul>
+</div>
+</body>
+</html>
