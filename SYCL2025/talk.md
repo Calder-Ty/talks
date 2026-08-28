@@ -83,8 +83,14 @@ projects crashing into mediocrity.
 :::
 
 ### What is Developer experience
+::: incremental
+- The experience a software developer has in creating software
+- Good DX removes Friction
+- Bad DX inhibits development
+:::
 
 ::: notes
+**Purpose**: Define DX.
 
 - The experience a software developer has in creating software
 - Good DX is associated with removing friction in the process of development
@@ -100,6 +106,8 @@ projects crashing into mediocrity.
 > -- gitlab.com "What Is developer Experience"
 
 :::notes
+**Purpose**: Introduce the claims, and justifications for DX that are suspect
+
 - Good DX is claimed to build better software
 - DX is often used as a metric of evaluating code and software packages for use and quality
 - My beef is with those last two points, and that DX does not inherently improve software, and that
@@ -119,6 +127,9 @@ Without hammering that out, we have no leg to stand on.
 > -- Fredick P. Brooks
 
 ::: notes
+**Purpose**: Introduce the purpose of software, and argue that this is foundational to our role as
+software developers.
+
 The late Fred Brooks stated this beautiful summation of the purpose of any software (or
 programming as he called it) system.
 
