@@ -19,9 +19,9 @@ rapport with the audience
 ### Ziggit Moderators
 
 - Sze
-- Pierrelgol
-- Dimdin
-- Tensorush
+- Pierrelgol: github.com/pierrelgol/pierrelgol
+- Dimdin: github.com/dimdin
+- Tensorush: 
 
 ::: notes
 **Purpose**:  Give a shout out to the mods who make ziggit amazing
