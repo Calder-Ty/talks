@@ -7,13 +7,16 @@ author: Tyler Calder
 ### Who Am I?
 
 - Tyler Calder
-    - Software engineer, lots of experience with databases and data infrastructure
+    - Software engineer
     - Husband and father
-    - Owner and Administrator of ziggit.dev
+    - I enjoy hiking, swiming, and reading
+    - Owner and administrator of ziggit.dev
 
 ::: notes
 **Purpose**: Introduce myself, my background, and any credentials that I think are relevant. Build
 rapport with the audience
+
+- Ziggit: a community for zig developers of all levels, beginners to experts.
 :::
 
 ### Ziggit Moderators
@@ -26,8 +29,9 @@ rapport with the audience
 ::: notes
 **Purpose**:  Give a shout out to the mods who make ziggit amazing
 - I would be remiss if I didn't mention my amazing team of moderators
+- Volunteer to make the comunity better
 - You should check out their sites, they are all accomplished developers in their own right.
-::: 
+:::
 
 ### Eastern Airlines Flight 401
 
@@ -55,7 +59,8 @@ Eastern Airlines Flight 401, Accident occured December 29th 1972
 :::
 
 ::: notes
-**Purpose**: Highlight that 'crew innattention' was the problem.
+**Purpose**: Highlight that 'crew innattention' was the problem, and that the crash led to a change
+in the industry.
 
 - Point of story is not about bad software causing an accident, because that isn't what happened.
 
@@ -64,11 +69,11 @@ Eastern Airlines Flight 401, Accident occured December 29th 1972
 - The crash and subsequent investigation brought major changes in Airline Industry
 :::
 
-### So what for software?
+### So what?
 
 ::: incremental
 
-- What is the purpose of Software?
+- What is the purpose of software?
 - How do we evaluate software?
 
 :::
@@ -80,38 +85,6 @@ software development.
 It is my belief that a developer experience can be a distraction, one that can blind us to real
 problems in software design. If we do not, as developers get a hold of it, it could send our
 projects crashing into mediocrity.
-:::
-
-### What is Developer experience
-::: incremental
-- The experience a software developer has in creating software
-- Good DX removes Friction
-- Bad DX inhibits development
-:::
-
-::: notes
-**Purpose**: Define DX.
-
-- The experience a software developer has in creating software
-- Good DX is associated with removing friction in the process of development
-- Bad DX is associated with processes, techniques, technologies or language features that inhibit a
-  software developer from writing software
-:::
-
-### 
-
-> Developer experience, also known as DX or DevEx, is just as essential as user experience for
-> organizations looking to drive innovation and stay ahead of the competition.
->
-> -- gitlab.com "What Is developer Experience"
-
-:::notes
-**Purpose**: Introduce the claims, and justifications for DX that are suspect
-
-- Good DX is claimed to build better software
-- DX is often used as a metric of evaluating code and software packages for use and quality
-- My beef is with those last two points, and that DX does not inherently improve software, and that
-  it isn't a good metric for evaluating code
 :::
 
 ### What is the purpose of software?
@@ -147,9 +120,50 @@ User and that user is the prime person for which software is made.
   software.
 :::
 
-### Why do we loose our way on this point
+### What is Developer experience
+::: incremental
+- The experience a software developer has in creating software
+- Good DX removes Friction
+- Bad DX inhibits development
+:::
 
-### Industry teaches us to forget about the purpose
+::: notes
+**Purpose**: Define DX.
+
+- The experience a software developer has in creating software
+- Good DX is associated with removing friction in the process of development
+- Bad DX is associated with processes, techniques, technologies or language features that inhibit a
+  software developer from writing software
+:::
+
+### 
+
+> Developer experience, also known as DX or DevEx, is just as essential as user experience for
+> organizations looking to drive innovation and stay ahead of the competition.
+>
+> -- gitlab.com "What Is developer Experience"
+
+:::notes
+**Purpose**: Introduce the claims, and justifications for DX that are suspect
+
+- DX is just as essential as User Experience?!
+- Good DX is claimed to build better software? How?
+- DX is often used as a metric of evaluating code and software packages for use and quality
+:::
+
+### A disconnect
+
+Insert diagram of disconnect
+
+::: notes
+There is a discconnect in the way we evealuate software, and the way we evaluate code that makes
+software. Developer experience is lauded as just as important as UX. It drives how we evaluate
+libraries and packages for incorporation into our projects.
+
+Where did this disconnect come from?
+:::
+
+### Learned Ignorance
 
 ::: notes
 
@@ -205,17 +219,28 @@ matters most is the future value of software, often to the detriment of current 
 
 ### Enter Developer Experience
 
+::: incremental
 - When we work in software, it is hard to _not_ see ourselves as users of software.
 - When the time comes to evaluate software, we see ourselves as a user.
     - Ergonomics
     - Ease of Use
+- However that 
+:::
 
 ::: notes
+**Purpose**: Note how Developers see their experience as user experience and begin puting themselves
+in the position of user.
+
 Software Developers work in a unique craft. In software, our tools, our medium and our product are
 all software. When we look at code and software, we often evaluate it from how easy or ergonomic it
 is for us to use. This is an understandable error to make. But it is an error. The goal of software
 development is not _our_ comfort, but the ease of our users, and ultimately, the owner of the
 machine.
+
+Software has some inherent complexity. The key is deciding when, how and where that complexity is
+eaten. There is a strange and odd tug of war between the library developer and application
+developer. Who owns and eats the complexity for the user? I'm not sure i have a good answer for
+that, but we need to be aware of it when developing our software.
 :::
 
 ### How we evaluate code
